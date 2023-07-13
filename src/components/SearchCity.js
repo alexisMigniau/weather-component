@@ -11,9 +11,10 @@ const InputContainer = styled.div`
 const SelectCustom = styled.div`
     width: 300px;
     margin-top: 30px;
-    background-color : #2C2C2C;
+    background-color : #3D3D3D;
     padding : 5px;
     border-radius : 10px;
+    color : white;
 `
 
 const CityContainer = styled.div`
@@ -29,8 +30,23 @@ const CityContainer = styled.div`
     border-radius : 10px; 
     transition : all 0.3s;
     &:hover {
-        background-color : #3D3D3D;
+        background-color : #2C2C2C;
     }
+`
+
+const InputSearch = styled.input`
+    width: 300px;
+    background-color : #3D3D3D;
+    border : none;
+    border-radius : 10px;
+    padding : 10px;
+    font-size : 18px;
+    color : white;
+`
+
+const InputLabel = styled.label`
+    font-size : 18px;
+    color : white;
 `
 
 function SearchCity({onCitySelected}) {
@@ -65,8 +81,8 @@ function SearchCity({onCitySelected}) {
     return (
         <div>
             <InputContainer>
-                <label htmlFor="search-city">Rechercher une ville</label>
-                <input name="search-city" type="text" placeholder="Paris" value={search} onChange={handleChangeSearch}/>
+                <InputLabel htmlFor="search-city">Sélectionner une ville</InputLabel>
+                <InputSearch name="search-city" type="text" placeholder="Paris" value={search} onChange={handleChangeSearch}/>
             </InputContainer>
             {cities && cities.length > 0 &&
                 <SelectCustom name="select-city">

@@ -46,14 +46,15 @@ function Weather() {
 
     useEffect(() => {
         if(citySelected !== null) {
-           fetchMeteo()
+
+            const fetchMeteo = async () => {
+                const res = await getMeteo(citySelected.latitude, citySelected.longitude);
+                setMeteoData(res)
+            }
+
+            fetchMeteo()
         }
     }, [citySelected])
-
-    const fetchMeteo = async () => {
-        const res = await getMeteo(citySelected.latitude, citySelected.longitude);
-        setMeteoData(res)
-    }
 
     const handleResetCity = () => {
         setMeteoData(null)

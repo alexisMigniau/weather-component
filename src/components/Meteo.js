@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef} from "react";
 import { styled } from "styled-components"
 import getIconFromWeatherCode from "../services/icons";
 import CloudyNight from "../video/cloudy-night.mp4"

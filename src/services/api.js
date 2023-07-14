@@ -9,7 +9,7 @@ const searchCity = async (city, count = 10, lang = 'fr') => {
 }
 
 const getMeteo = async (lat, long) => {
-    const res = await fetch(`https://api.open-meteo.com/v1/meteofrance?latitude=${lat}&longitude=${long}&current_weather=true&hourly=temperature_2m,weathercode,is_day&timezone=auto&forecast_days=7`);
+    const res = await fetch(`https://api.open-meteo.com/v1/meteofrance?latitude=${lat}&longitude=${long}&current_weather=true&hourly=temperature_2m,weathercode,is_day&timezone=auto&forecast_days=11&daily=temperature_2m_max,temperature_2m_min,weathercode`);
 
     if(res.ok) {
         return await res.json();

@@ -19,6 +19,9 @@ const Temperature = styled.h3`
 `
 
 const CityData = styled.div`
+    display: flex;
+    flex-direction : column;
+    align-items : center;
 `
 
 const CloudVideo = styled.video`
@@ -36,7 +39,7 @@ const HourContainer = styled.div`
     flex-direction : column;
     align-items : center;
     border-radius : 20px;
-    background-color : #3D3D3D;
+    background-color : #3A3D3D;
     width : 100%;
     opacity : 60%;
     padding : 10px;
@@ -77,6 +80,21 @@ const DayContainer = styled(HourContainer)`
     margin-top : 30px;
 `
 
+const CityHeader = styled.div`
+    display: flex;
+    column-gap : 20px;
+`
+
+const CityDescripion = styled.h3`
+    color : #ADADAD;
+`
+
+const Day = styled.div`
+    display: flex;
+    flex-direction : row;
+    align-items : center;
+`
+
 function Meteo({data, city}) {
 
     const videoRef= useRef();
@@ -100,6 +118,24 @@ function Meteo({data, city}) {
         });
     }
 
+    const nextDays = [];
+
+    data.daily.time.forEach((day, index) => {
+        if(data.daily.weathercode[index]) {
+
+            const dayString = (new Date(day)).toLocaleString('fr-FR', {  weekday: 'long' })
+
+            nextDays.push({
+                time : index === 0 ? "Aujourd'hui" : dayString.charAt(0).toUpperCase() + dayString.slice(1) ,
+                temperature_min : data.daily.temperature_2m_min[index],
+                temperature_max : data.daily.temperature_2m_max[index],
+                weathercode :  data.daily.weathercode[index]
+            });
+        }
+    });
+
+    console.log(nextDays);
+
     return (
         <MeteoContainer>
             <CloudVideo
@@ -111,7 +147,11 @@ function Meteo({data, city}) {
                 ref={videoRef}
             />
             <CityData>
-                <h2>{city.name}</h2>
+                <CityHeader>
+                    <h2>{city.name}</h2>
+                    <img style={{paddingLeft : "5px"}} alt={city.country} src={`https://hatscripts.github.io/circle-flags/flags/${city.country_code.toLowerCase()}.svg`} width="45" />
+                </CityHeader>
+                <CityDescripion>{[city.country, city.admin1, city.admin2, city.admin3, city.admin4].filter(a => a !== "" && a !== city.name).filter((value, index, array) => array.indexOf(value) === index).join(', ')}</CityDescripion>
             </CityData>
             <img style={{marginTop : "-30px", marginBottom : "-30px"}} alt={data.current_weather.weathercode} src={getIconFromWeatherCode(data.current_weather.weathercode, data.current_weather.is_day)} width="200px" />
             <Temperature>{data.current_weather.temperature} C°</Temperature>
@@ -129,8 +169,14 @@ function Meteo({data, city}) {
                 </Hours>
             </HourContainer>
             <DayContainer>
-                <HourLabel><FaRegCalendarAlt /> Prévision sur 10 jours</HourLabel>
+                <HourLabel><FaRegCalendarAlt /> Prévision sur {nextDays.length} jours</HourLabel>
                 <hr style={{width : "98%"}} />
+                {nextDays.map((day,index) => (
+                    <Day key={`day-${index}`}>
+                        <HourContent>{day.time}</HourContent>
+                        <img alt={day.weathercode} src={getIconFromWeatherCode(day.weathercode, true)} width="50px" />
+                    </Day>
+                ))}
             </DayContainer>
         </MeteoContainer>
     )

@@ -10,7 +10,7 @@ const Container = styled.div`
     justify-content : center;
     width : 100%;
     height : 100%;
-    padding-top : 100px;
+    padding-top : 40px;
 `
 
 const HeaderContainer = styled.div`
@@ -32,6 +32,7 @@ const ChangeCityButton = styled.button`
     padding-right : 20px;
     padding-left : 20px;
     transition : all 1s;
+    opacity : 60%;
     &:hover {
         background-color: #3D3D3D;
         cursor : pointer;

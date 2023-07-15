@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/weather-component/static/css/main.b6eb22cf.css",
+    "main.js": "/weather-component/static/js/main.32074982.js",
+    "static/js/787.6169df72.chunk.js": "/weather-component/static/js/787.6169df72.chunk.js",
+    "static/media/cloudy-night.mp4": "/weather-component/static/media/cloudy-night.1ca65f7afb8216659498.mp4",
+    "index.html": "/weather-component/index.html",
+    "main.b6eb22cf.css.map": "/weather-component/static/css/main.b6eb22cf.css.map",
+    "main.32074982.js.map": "/weather-component/static/js/main.32074982.js.map",
+    "787.6169df72.chunk.js.map": "/weather-component/static/js/787.6169df72.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b6eb22cf.css",
+    "static/js/main.32074982.js"
+  ]
+}
